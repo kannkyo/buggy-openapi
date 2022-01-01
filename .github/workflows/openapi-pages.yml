@@ -13,10 +13,9 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: npm run docs:redoc
-      - run: npm run docs:openapitools
-      - name: deploy document to gh-pages
-        uses: crazy-max/ghaction-github-pages@v2
+      - run: npm run doc:redoc
+      - run: npm run doc:openapitools
+      - uses: crazy-max/ghaction-github-pages@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
