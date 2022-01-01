@@ -45,12 +45,12 @@ jobs:
             stoplight/prism \
             mock -h 0.0.0.0 /docs/api.yaml --cors=false
       - run: |
-        docker run --rm -it \
-          -v $(pwd):/sitespeed.io \
-          sitespeedio/sitespeed.io \
-            --summary-detail \
-            --outputFolder reports/sitespeed-results \
-            sitespeedio/target.txt
+          docker run --rm -it \
+            -v $(pwd):/sitespeed.io \
+            sitespeedio/sitespeed.io \
+              --summary-detail \
+              --outputFolder reports/sitespeed-results \
+              sitespeedio/target.txt
       - uses: actions/upload-artifact@v2.2.4
         with:
           name: report
