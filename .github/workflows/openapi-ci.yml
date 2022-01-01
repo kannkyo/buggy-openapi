@@ -19,6 +19,7 @@ jobs:
     #     options: --entrypoint "mock -h 0.0.0.0 /docs/api.yaml --cors=false"
     steps:
       - uses: actions/checkout@v2
+      - run: sed -i "s/mock-api:4010/172.17.0.2:4010/" ./api/petstore.swagger.yml
       - run: |
           docker run -dit --rm \
             -v $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro \
@@ -30,8 +31,7 @@ jobs:
         continue-on-error: true
         with:
           target: ./api/petstore.swagger.yml
-          # cmd_options: -O 172.17.0.2
       - uses: actions/upload-artifact@v2.2.4
         with:
-          name: report
-          path: report_*
+          name: report_html.html
+          path: report_html.html
