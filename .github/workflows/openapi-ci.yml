@@ -16,8 +16,7 @@ jobs:
           - 4010:4010
         volumes:
           - $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro
-        options:
-          - mock -h 0.0.0.0 /docs/api.yaml --cors=false
+        options: mock -h 0.0.0.0 /docs/api.yaml --cors=false
     steps:
       - uses: actions/checkout@v2
       - uses: zaproxy/action-api-scan@v0.1.0
