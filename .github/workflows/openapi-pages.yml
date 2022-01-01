@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm install
       - run: npm run docs:redoc
       - run: npm run docs:openapitools
       - name: deploy document to gh-pages
