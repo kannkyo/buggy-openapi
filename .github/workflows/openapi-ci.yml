@@ -45,7 +45,7 @@ jobs:
             stoplight/prism \
             mock -h 0.0.0.0 /docs/api.yaml --cors=false
       - run: |
-          docker run --rm -it \
+          docker run -dit --rm \
             -v $(pwd):/sitespeed.io \
             sitespeedio/sitespeed.io \
               --summary-detail \
