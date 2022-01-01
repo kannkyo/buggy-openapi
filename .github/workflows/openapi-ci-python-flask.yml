@@ -1,4 +1,4 @@
-name: openapi ci
+name: openapi ci for python-flask
 
 on:
   push:
