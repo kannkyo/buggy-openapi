@@ -15,7 +15,7 @@ jobs:
         ports:
           - 4010:4010
         volumes:
-          - $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro
+          - ./api/petstore.swagger.yml:/docs/api.yaml:ro
         options: --entrypoint "mock -h 0.0.0.0 /docs/api.yaml --cors=false"
     steps:
       - uses: actions/checkout@v2
