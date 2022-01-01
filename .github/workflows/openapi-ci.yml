@@ -20,3 +20,8 @@ jobs:
     - uses: zaproxy/action-api-scan@v0.1.0
       with:
         target: http://172.17.0.2:4010
+        cmd_options: -t ./api/petstore.swagger.yml -r scan-result.html
+    - uses: actions/upload-artifact@v2.2.4
+      with:
+        name: report
+        path: scan-result.html
