@@ -9,20 +9,28 @@ on:
 jobs:
   zap:
     runs-on: ubuntu-latest
-    services:
-      mock-api:
-        image: stoplight/prism
-        ports:
-          - 4010:4010
-        volumes:
-          - ./api/petstore.swagger.yml:/docs/api.yaml:ro
-        options: --entrypoint "mock -h 0.0.0.0 /docs/api.yaml --cors=false"
+    # services:
+    #   mock-api:
+    #     image: stoplight/prism
+    #     ports:
+    #       - 4010:4010
+    #     volumes:
+    #       - ./api/petstore.swagger.yml:/docs/api.yaml:ro
+    #     options: --entrypoint "mock -h 0.0.0.0 /docs/api.yaml --cors=false"
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          docker run -dit --rm \
+            -v $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro \
+            -p 4010:4010 \
+            -h mock-api \
+            stoplight/prism \
+            mock -h 0.0.0.0 /docs/api.yaml --cors=false
       - uses: zaproxy/action-api-scan@v0.1.0
         continue-on-error: true
         with:
           target: ./api/petstore.swagger.yml
+          # cmd_options: -O 172.17.0.2
       - uses: actions/upload-artifact@v2.2.4
         with:
           name: report
