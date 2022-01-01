@@ -2,6 +2,11 @@
 
 脆弱な API の例です。
 
+[![openapi pages](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-pages.yml/badge.svg)](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-pages.yml)
+
+- [redoc 版 APIドキュメント](https://kannkyo.github.io/buggy-openapi/redoc/)
+- [openapitools 版 API ドキュメント](https://kannkyo.github.io/buggy-openapi/openapitools/)
+
 ## 使い方
 
 ### ドキュメンテーション
