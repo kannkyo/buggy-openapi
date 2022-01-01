@@ -12,11 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        docker run \
+        docker run -dit --rm \
           -v $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro \
           -p 4010:4010 \
           stoplight/prism \
           mock -h 0.0.0.0 /docs/api.yaml --cors=false
     - uses: zaproxy/action-api-scan@v0.1.0
       with:
-        target: http://172.17.0.2
+        target: http://172.17.0.2:4010
