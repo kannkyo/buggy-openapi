@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        docker run --rm -it \
+        docker run \
           -v $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro \
           -p 4010:4010 \
           stoplight/prism \
