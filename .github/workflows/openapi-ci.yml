@@ -28,10 +28,5 @@ jobs:
             stoplight/prism \
             mock -h 0.0.0.0 /docs/api.yaml --cors=false
       - uses: zaproxy/action-api-scan@v0.1.0
-        continue-on-error: true
         with:
           target: ./api/petstore.swagger.yml
-      - uses: actions/upload-artifact@v2.2.4
-        with:
-          name: report_html.html
-          path: report_html.html
