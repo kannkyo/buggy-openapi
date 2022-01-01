@@ -2,6 +2,8 @@
 
 脆弱な API の例です。
 
+[![openapi ci](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-ci.yml/badge.svg)](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-ci.yml)
+[![openapi ci for python-flask](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-ci-python-flask.yml/badge.svg)](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-ci-python-flask.yml)
 [![openapi pages](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-pages.yml/badge.svg)](https://github.com/kannkyo/buggy-openapi/actions/workflows/openapi-pages.yml)
 
 - [redoc 版 APIドキュメント](https://kannkyo.github.io/buggy-openapi/redoc/)
