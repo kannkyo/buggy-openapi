@@ -1,0 +1,5 @@
+http://mock-api:4010/user/username1
+http://mock-api:4010/user/username2
+http://mock-api:4010/user/username3
+http://mock-api:4010/user/username4
+http://mock-api:4010/user/username5

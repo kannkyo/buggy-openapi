@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  owasp-zap-api:
+    image: owasp/zap2docker-stable:2.9.0
+    volumes:
+      - ./api/:/zap/wrk/:rw
+    command: zap-api-scan.py -t petstore.swagger.yml -f openapi -r scan-result.html -d
+
+  owasp-zap-gui:
+    image: owasp/zap2docker-stable:2.9.0
+    volumes:
+      - ./api/petstore.swagger.yml:/zap/wrk/api.yaml:ro
+    command: zap-webswing.sh
+    ports:
+      - "8181:8080"
+      - "8192:8090"

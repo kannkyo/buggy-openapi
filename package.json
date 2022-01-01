@@ -1,0 +1,22 @@
+{
+  "name": "buggy-openapi",
+  "version": "0.0.1",
+  "description": "openapi sample with vuls",
+  "main": "index.js",
+  "repository": "https://github.com/kannkyo/buggy-openapi",
+  "author": "kannkyo <15080890+kannkyo@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "doc:redoc": "redoc-cli bundle ./api/petstore.swagger.yml -o ./public/redoc/index.html",
+    "doc:openapitools": "openapi-generator-cli generate -g html -i api/petstore.swagger.yml -o ./public/openapitools",
+    "generate": "openapi-generator-cli generate -i ./api/petstore.swagger.yml -g $TARGET -o ./generator/$TARGET",
+    "gen:jmeter": "cross-env TARGET=jmeter npm run generate",
+    "gen:python": "cross-env TARGET=python npm run generate",
+    "gen:python-flask": "cross-env TARGET=python-flask npm run generate"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.4.23",
+    "cross-env": "^7.0.3",
+    "redoc-cli": "^0.13.2"
+  }
+}

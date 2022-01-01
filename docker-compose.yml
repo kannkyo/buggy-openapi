@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  swagger-editor:
+    image: swaggerapi/swagger-editor:v3.14.6
+    ports:
+      - "81:8080"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui:v3.36.1
+    volumes:
+      - ./api/petstore.swagger.yml:/docs/api.yaml:ro
+    environment:
+      SWAGGER_JSON: /docs/api.yaml
+    ports:
+      - "8080:8080"
+
+  mock-api:
+    image: stoplight/prism:4.1.0
+    volumes:
+      - ./api/petstore.swagger.yml:/docs/api.yaml:ro
+    command: mock -h 0.0.0.0 /docs/api.yaml --cors=false
+    ports:
+      - "4010:4010"
+
+  sitespeed:
+    image: sitespeedio/sitespeed.io:6.3.1
+    volumes:
+      - ./:/sitespeed.io
+    command: [
+      "--summary-detail",
+      "--outputFolder",
+      "reports/sitespeed-results",
+      "sitespeedio/target.txt"
+    ]
+
