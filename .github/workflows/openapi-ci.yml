@@ -30,3 +30,28 @@ jobs:
       - uses: zaproxy/action-api-scan@v0.1.0
         with:
           target: ./api/petstore.swagger.yml
+
+  sitespeedio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sed -i "s/mock-api:4010/172.17.0.2:4010/" ./api/petstore.swagger.yml
+      - run: sed -i "s/mock-api:4010/172.17.0.2:4010/" ./sitespeedio/target.txt
+      - run: |
+          docker run -dit --rm \
+            -v $(pwd)/api/petstore.swagger.yml:/docs/api.yaml:ro \
+            -p 4010:4010 \
+            -h mock-api \
+            stoplight/prism \
+            mock -h 0.0.0.0 /docs/api.yaml --cors=false
+      - run: |
+          docker run -dit --rm \
+            -v $(pwd):/sitespeed.io \
+            sitespeedio/sitespeed.io \
+              --summary-detail \
+              --outputFolder reports/sitespeed-results \
+              sitespeedio/target.txt
+      - uses: actions/upload-artifact@v2.2.4
+        with:
+          name: report
+          path: reports/sitespeed-results/

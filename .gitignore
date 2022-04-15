@@ -282,3 +282,4 @@ cython_debug/
 # For openapi
 /generator
 /public
+/reports
